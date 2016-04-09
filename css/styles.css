@@ -1,0 +1,48 @@
+.axis {
+  font: 12px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  stroke: 1px solid black;
+  fill: #8D82BD;
+}
+
+.bar:hover {
+  fill: #C2B4B2;
+}
+
+body {
+    font-family: sans-serif;
+}
+    
+.chart {
+    
+}
+
+#container{
+    
+}
+
+.d3-tip {
+    background-color: #C2B4B2;
+    width: 150px;
+    height: 70px;
+    color: dimgray;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.xaxis {
+    font: 9px sans-serif;
+    color: red;
+}
+
+
+
