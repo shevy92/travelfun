@@ -109,7 +109,7 @@
                 
                 console.log(data);
                 
-                var fullWidth = 600;
+                var fullWidth = 800;
                 var fullHeight = 600;
                 var margin = { top: 0, right: 70, bottom: 120, left: 70};
 
@@ -141,7 +141,7 @@
         
                
                                       
-                xScale.domain([-1, d3.max(data, function(d) { return +d.Airbnb_Ranking; })]);
+                xScale.domain([-1, d3.max(data, function(d) { return +d.Airbnb_Ranking; })+2]);
 
                 yScale.domain(
                     [0, d3.max(data, function(d) { return +d.Airbnb_Price; })+10]);
@@ -164,19 +164,30 @@
                     .attr("cy", function(d) {
                         return yScale(+d.Airbnb_Price);
                     })
-                    .attr("r", 4)
-                    .attr("fill", "steelblue")
+                    .attr("r", 7)
+                    .attr("fill", "#8D82BD")
                     .on('mouseover', tip.show)
                     .on('mouseout', tip.hide);
 
                 chart2.append("g")
                     .attr("class", "x axis")
                     .attr("transform", "translate(0," + height + ")")
-                    .call(xAxis);
+                    .call(xAxis)
+                    .append("text")
+                      .attr("x", fullWidth/2)
+                      .attr("y", 40)
+                      .style("text-anchor", "end")
+                      .text("Average AirBnB Price (USD)");
 
                 chart2.append("g")
                     .attr("class", "y axis")
-                    .call(yAxis);
+                    .call(yAxis)
+                    .append("text")
+                      .attr("transform", "rotate(-90)")
+                      .attr("x", -150)
+                      .attr("y", -50)
+                      .style("text-anchor", "end")
+                      .text("Average AirBnB Price (USD)");
 
                 chart2.call(tip);
             }       
