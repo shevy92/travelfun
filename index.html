@@ -15,33 +15,20 @@
         <div class="chart" id="chart1"></div>
         <div class="chart" id="chart2"></div>
     </div>
+    
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     
     <script type="text/javascript">
-        
-        var tip = d3.tip()
-            .attr('class', 'd3-tip')
-            .offset([-50, 0])
-            .html(function(d) {
-                return d.City + "</br> $" + d.Average;
-          })
-        
-        /*
-        var chart2 = d3.select("#chart2").append("svg")
-                        .attr("width", fullwidth)
-						.attr("height", fullheight)
-						.append("g")
-						.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-                    */
-        
+    
         
         d3.csv("data/accomodations.csv", function(error, data) {
           if (error) throw error;
             
-            data.sort(function(a,b) {return b.City-a.City;});
-
             function makeChart1 () {
+                
+                data.sort(function(a,b) {return b.City-a.City;});
+                
                 var fullwidth = 1200;
                 var fullheight = 450;
                 var margin = { top: 0, right: 70, bottom: 120, left: 70};
@@ -64,6 +51,13 @@
                     .orient("left")
                     .ticks(10, "$");
                 
+                var tip = d3.tip()
+                    .attr('class', 'd3-tip')
+                    .offset([0, 0])
+                    .html(function(d) {
+                        return d.City+", "+d.Country+"</br> $"+d.Average+" USD";
+                  })
+                
                 var chart1 = d3.select("#chart1").append("svg")
                         .attr("width", fullwidth)
 						.attr("height", fullheight)
@@ -72,15 +66,6 @@
                 
               x.domain(data.map(function(d) { return d.City; }));
               y.domain([0, d3.max(data, function(d) { return +d.Average; })+10]);
-                
-                //console.log(d3.max(data, function(d) { return +d.Overall_Ranking; }));
-
-                /*
-              chart1.append("g")
-                  .attr("class", "xaxis")
-                  .attr("transform", "translate(0," + height + ")")
-                  .call(xAxis);
-                */
 
               chart1.append("g")
                   .attr("class", "y axis")
@@ -121,35 +106,81 @@
             }
             
             function makeChart2 () {
-                /*
-              x.domain(data.map(function(d) { return d.City; }));
-              y.domain([0, d3.max(data, function(d) { return d.Overall_Ranking; })]);
+                
+                console.log(data);
+                
+                var fullWidth = 600;
+                var fullHeight = 600;
+                var margin = { top: 0, right: 70, bottom: 120, left: 70};
 
-              chart2.append("g")
-                  .attr("class", "x axis")
-                  .attr("transform", "translate(0," + height + ")")
-                  .call(xAxis);
+                var width = fullWidth - margin.left - margin.right;
+                var height = fullHeight - margin.top - margin.bottom;
+                
+                var xScale = d3.scale.linear()
+								.range([ width, 0]);
 
-              chart2.append("g")
-                  .attr("class", "y axis")
-                  .call(yAxis)
-                .append("text")
-                  .attr("transform", "rotate(-90)")
-                  .attr("y", 6)
-                  .attr("dy", ".71em")
-                  .style("text-anchor", "end")
-                  .text("Average Price");
+                var yScale = d3.scale.linear()
+                                    .range([ height, 0 ]);
 
-              chart2.selectAll(".bar")
-                  .data(data)
-                .enter().append("rect")
-                  .attr("class", "bar")
-                  .attr("x", function(d) { return x(d.City); })
-                  .attr("width", x.rangeBand())
-                  .attr("y", function(d) { return y(d.Overall_Ranking); })
-                  .attr("height", function(d) { console.log(d.Overall_Ranking, height - d.Overall_Ranking); return height - y(d.Overall_Ranking); });
-                  */
-            }
+                var xAxis = d3.svg.axis()
+                                .scale(xScale)
+                                .orient("bottom")
+                                .ticks(15);
+
+                var yAxis = d3.svg.axis()
+                                .scale(yScale)
+                                .orient("left")
+                                .ticks(10, "$");
+                
+                 var tip = d3.tip()
+                    .attr('class', 'd3-tip')
+                    .offset([0, 0])
+                    .html(function(d) {
+                        return d.City+ ", " +d.Country+ "</br> $" +d.Airbnb_Price+ " USD</br>Ranking: "+ d.Airbnb_Ranking;
+                  })
+        
+               
+                                      
+                xScale.domain([-1, d3.max(data, function(d) { return +d.Airbnb_Ranking; })]);
+
+                yScale.domain(
+                    [0, d3.max(data, function(d) { return +d.Airbnb_Price; })+10]);
+
+                var chart2 = d3.select("#chart2")
+                        .append("svg")
+                        .attr("width", fullWidth)
+                        .attr("height", fullHeight)
+                        .append("g")
+                            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                var circles = chart2.selectAll("circle")
+                                .data(data)
+                                .enter()
+                                .append("circle");
+
+                circles.attr("cx", function(d) {
+                        return xScale(+d.Airbnb_Ranking);
+                    })
+                    .attr("cy", function(d) {
+                        return yScale(+d.Airbnb_Price);
+                    })
+                    .attr("r", 4)
+                    .attr("fill", "steelblue")
+                    .on('mouseover', tip.show)
+                    .on('mouseout', tip.hide);
+
+                chart2.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis);
+
+                chart2.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis);
+
+                chart2.call(tip);
+            }       
+            
             
             makeChart1();
             makeChart2();

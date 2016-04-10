@@ -32,11 +32,11 @@ body {
 
 .d3-tip {
     background-color: #C2B4B2;
-    width: 150px;
-    height: 70px;
     color: dimgray;
     border-radius: 10px;
     padding: 5px;
+    text-align: center;
+    font-size:11px;
 }
 
 .xaxis {
