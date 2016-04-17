@@ -4,16 +4,48 @@
 <head>
     <title>Accomodations: In Progress</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="js/scripts.js"></script>
+    
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,200,100,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+	<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+	<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
     
 </head>
 
 <body>
     <div id="container">
-        <h2>Accomodations (A work in Progress!) </h2>
-        <p>Stumped on where your wanderlust should take you next? Source: <a href="http://knoema.com/zfnkitc/accommodation-price-index-2016">Knoema Word Data Finder</a></p>
+        <h1>Accomodations (A work in Progress!) </h1>
+        <p>Stumped on where your wanderlust should take you next? Check out this pricing guide. View 5 Star, 4 Star, 3 Star, 2 Star, 1 Star hotels, hostels, AirBnb, and average prices for 150 destinations around the world. </br>Source: <a href="http://knoema.com/zfnkitc/accommodation-price-index-2016">Knoema Word Data Finder</a></br></br></p>
 
+        <p>Compare the average price for accomadations here. Is it any surprise that New York City is the most expensive in the world? Actually it is a bit surprising...</br> Perhaps a trip to the exotic Albania! (It's still a European vacation)</p>
+       
         <div class="chart" id="chart1"></div>
+        
+        <p>Let's take a look at some average AirBnb prices shall we? If hotels are not so much your thing...</p>
+        
         <div class="chart" id="chart2"></div>
+        
+        <p>Accomodations Across the Map <span>&#9992;</span></p>
+        
+        <p>Hover over cities to see the average price of accomodations in that city, as well as an overall ranking as compared to the other destinations!</p>
+        
+        <div id="map"></div>
+	
+        <div id="legend">
+            <div class="box" id="one"></div> <p class="label">Average Price higher than $99 a Night</p>
+            <div class="box" id="two"></div> <p class="label">Average Price between $50 and $99 a Night</p>
+            <div class="box" id="three"></div> <p class="label">Average Price less than $50 a Night</p>
+        </div>
+
+        <div id="legend2">
+            <img src="map/marker.png" alt="one" class="markers" id="mone"> <p class="label">Overall Ranking: Top 50</p>
+            <img src="map/marker.png" alt="two" class="markers" id="mtwo"> <p class="label">Overall Ranking: Mid-rank</p>
+            <img src="map/marker.png" alt="three" class="markers" id="mthree"> <p class="label">Overall Ranking: Bottom 50</p>
+        </div>
+
     </div>
     
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
@@ -24,177 +56,10 @@
         
         d3.csv("data/accomodations.csv", function(error, data) {
           if (error) throw error;
-            
-            function makeChart1 () {
-                
-                data.sort(function(a,b) {return b.City-a.City;});
-                
-                var fullwidth = 1200;
-                var fullheight = 450;
-                var margin = { top: 0, right: 70, bottom: 120, left: 70};
 
-                var width = fullwidth - margin.left - margin.right;
-                var height = fullheight - margin.top - margin.bottom;
-
-                var x = d3.scale.ordinal()
-                    .rangeRoundBands([0, width], .1);
-
-                var y = d3.scale.linear()
-                    .range([height, 0]);
-
-                var xAxis = d3.svg.axis()
-                    .scale(x)
-                    .orient("bottom");
-
-                var yAxis = d3.svg.axis()
-                    .scale(y)
-                    .orient("left")
-                    .ticks(10, "$");
-                
-                var tip = d3.tip()
-                    .attr('class', 'd3-tip')
-                    .offset([0, 0])
-                    .html(function(d) {
-                        return d.City+", "+d.Country+"</br> $"+d.Average+" USD";
-                  })
-                
-                var chart1 = d3.select("#chart1").append("svg")
-                        .attr("width", fullwidth)
-						.attr("height", fullheight)
-						.append("g")
-						.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-                
-              x.domain(data.map(function(d) { return d.City; }));
-              y.domain([0, d3.max(data, function(d) { return +d.Average; })+10]);
-
-              chart1.append("g")
-                  .attr("class", "y axis")
-                  .call(yAxis)
-                .append("text")
-                  .attr("transform", "rotate(-90)")
-                  .attr("x", -150)
-                  .attr("y", -50)
-                 // .attr("dy", ".71em")
-                  .style("text-anchor", "end")
-                  .text("Average Price (USD)");
-                
-                chart1.append("g")
-                    .attr("class", "x axis xaxis")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(xAxis)
-                    .selectAll("text")  
-                    .style("text-anchor", "end")
-                    .attr("dx", "-.8em")
-                    .attr("dy", "-.6em")
-                    .attr("transform", function(d) {
-                        return "rotate(-90)" 
-                    });
-               
-
-              chart1.selectAll(".bar")
-                  .data(data)
-                .enter().append("rect")
-                  .attr("class", "bar")
-                  .attr("x", function(d) { return x(d.City); })
-                  .attr("width", x.rangeBand())
-                  .attr("y", function(d) { return y(d.Average); })
-                  .attr("height", function(d) { return height - y(d.Average); })
-                  .on('mouseover', tip.show)
-                  .on('mouseout', tip.hide);
-                
-                chart1.call(tip);
-            }
-            
-            function makeChart2 () {
-                
-                console.log(data);
-                
-                var fullWidth = 800;
-                var fullHeight = 600;
-                var margin = { top: 0, right: 70, bottom: 120, left: 70};
-
-                var width = fullWidth - margin.left - margin.right;
-                var height = fullHeight - margin.top - margin.bottom;
-                
-                var xScale = d3.scale.linear()
-								.range([ width, 0]);
-
-                var yScale = d3.scale.linear()
-                                    .range([ height, 0 ]);
-
-                var xAxis = d3.svg.axis()
-                                .scale(xScale)
-                                .orient("bottom")
-                                .ticks(15);
-
-                var yAxis = d3.svg.axis()
-                                .scale(yScale)
-                                .orient("left")
-                                .ticks(10, "$");
-                
-                 var tip = d3.tip()
-                    .attr('class', 'd3-tip')
-                    .offset([0, 0])
-                    .html(function(d) {
-                        return d.City+ ", " +d.Country+ "</br> $" +d.Airbnb_Price+ " USD</br>Ranking: "+ d.Airbnb_Ranking;
-                  })
-        
-               
-                                      
-                xScale.domain([-1, d3.max(data, function(d) { return +d.Airbnb_Ranking; })+2]);
-
-                yScale.domain(
-                    [0, d3.max(data, function(d) { return +d.Airbnb_Price; })+10]);
-
-                var chart2 = d3.select("#chart2")
-                        .append("svg")
-                        .attr("width", fullWidth)
-                        .attr("height", fullHeight)
-                        .append("g")
-                            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-                var circles = chart2.selectAll("circle")
-                                .data(data)
-                                .enter()
-                                .append("circle");
-
-                circles.attr("cx", function(d) {
-                        return xScale(+d.Airbnb_Ranking);
-                    })
-                    .attr("cy", function(d) {
-                        return yScale(+d.Airbnb_Price);
-                    })
-                    .attr("r", 7)
-                    .attr("fill", "#8D82BD")
-                    .on('mouseover', tip.show)
-                    .on('mouseout', tip.hide);
-
-                chart2.append("g")
-                    .attr("class", "x axis")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(xAxis)
-                    .append("text")
-                      .attr("x", fullWidth/2)
-                      .attr("y", 40)
-                      .style("text-anchor", "end")
-                      .text("Average AirBnB Price (USD)");
-
-                chart2.append("g")
-                    .attr("class", "y axis")
-                    .call(yAxis)
-                    .append("text")
-                      .attr("transform", "rotate(-90)")
-                      .attr("x", -150)
-                      .attr("y", -50)
-                      .style("text-anchor", "end")
-                      .text("Average AirBnB Price (USD)");
-
-                chart2.call(tip);
-            }       
-            
-            
-            makeChart1();
-            makeChart2();
+            makeChart1(data);
+            makeChart2(data);
+            makemap(data);
         });
 
         
