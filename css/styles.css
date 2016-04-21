@@ -18,12 +18,7 @@
   fill: #C2B4B2;
 }
 
-body {
-    color: darkslategrey;
-    background-color: lightsteelblue;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 100;
-}
+
     
 .chart {
     color: lightsteelblue;
@@ -53,86 +48,73 @@ body {
 
 .leaflet-container{
             
-        }
-        #map {
-            margin: 0 auto;
-            width: 80%; 
-            height: 450px;
-        }
-        #title {
-            color: #473B6B;
-            font-size: 3em;
-            text-align: center;
-            width: 55%;
-            border-radius: 20px;
-            margin: 0 auto;
-        }
-        #title span {
-            color: #EFF7CD;
-        }
-        p {
-            font-size: 1.3em;
-            text-align: center;
-        }
-        .leaflet-bottom.leaflet-right {
-            display: none !important;
-        }
-        #footer {
-            width: 30%;
-            float: right;
-            margin-right: 10%;
-            margin-top: -100px;
-            font-size: 1em;
-            clear: both;
-        }
-        .box {
-            width: 20px;
-            height: 20px;
-            margin-left: 10%;
-            border: 2px solid #C9C9C9;
-            border-radius: 5px;
-            float:left;
-            clear:both;
-        }
-        #one {
-            background-color: #473433;
-        }
-        #two {
-            background-color: #C2B4B2;
-        }
-        #three {
-            background-color: #8D82BD;
-        }
-        .label {
-            text-align:left;
-            font-size: 1em;
-            margin-left: 5px;
-            vertical-align: middle;
-        }
-        #legend {
-            width:30%;
-            margin-left: 8%;
-        }
-        #legend2 {
-            float:left;
-            clear:both;
-            width:30%;
-            margin-left: 38%;
-            margin-top: -110px;
-        }
-        .markers {
-            float:left;
-            clear:both;
-            text-align: center;
-        }
-        #mone {
-            width: 10%;
-        }
-        #mtwo {
-            width: 8%;
-            margin-left:4px;
-        }
-        #mthree {
-            width: 6%;
-            margin-left:7px;
-        }
+}
+
+
+.leaflet-bottom.leaflet-right {
+    display: none !important;
+}
+
+.box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #C9C9C9;
+    border-radius: 5px;
+    float:left;
+    clear:both;
+}
+#one {
+    background-color: #473433;
+}
+#two {
+    background-color: #C2B4B2;
+}
+#three {
+    background-color: #8D82BD;
+}
+.label {
+    text-align:left;
+    font-size: 1em;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+#legend {
+    width:30%;
+    margin-left: 8%;
+}
+#legend2 {
+    float:left;
+    clear:both;
+    width:30%;
+    margin-left: 38%;
+    margin-top: -110px;
+}
+.markers {
+    float:left;
+    clear:both;
+    text-align: center;
+}
+#mone {
+    width: 10%;
+}
+#mtwo {
+    width: 8%;
+    margin-left:4px;
+}
+#mthree {
+    width: 6%;
+    margin-left:7px;
+}
+
+#mapPlaces {
+  width: 100%;
+  height: 500px;
+  position: relative;
+}
+@media screen and (max-width: 768px) {
+  #mapplaces {
+    height: 200px;
+  }
+}
+#doubleChart {
+}
