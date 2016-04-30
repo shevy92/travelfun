@@ -29,12 +29,19 @@
 }
 
 .d3-tip {
-    background-color: #C2B4B2;
+    background-color: lightgray;
     color: dimgray;
-    border-radius: 10px;
     padding: 5px;
-    text-align: center;
+    border-radius: 10px;
+    text-align: left;
     font-size:11px;
+    width: 130px;
+    height: 200px;
+}
+hr {
+    padding:none;
+    margin:0;
+    margin-top:20px;
 }
 
 .xaxis {
@@ -139,6 +146,53 @@
     margin-top: 5%;
 }
 .subtext {
-    text-align: right;
     font-size: 0.8em;
+}
+
+#doubleContainer {
+    width: 90%;
+    height: 450px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+#doubleChart1 {
+    width: 48%;
+    height: 450px;
+    float:left;
+}
+#doubleChart2 {
+    width: 48%;
+    height: 450px;
+    float: right;
+}
+#buttons {
+    margin-bottom: 5px;
+    
+}
+button {
+    border-radius: 5px;
+    color: #52d3aa;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    width: 6%;
+}
+button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#fh5co-testimonials{
+    padding-bottom: 0;
+}
+#fh5co-work{
+    padding-bottom: 0;
+}
+#fh5co-intro{
+    padding-bottom: 0;
+}
+
+.section-heading{
+    padding: 0;
+}
+.text-center {
+    padding: 0;
 }
