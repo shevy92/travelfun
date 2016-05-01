@@ -11,11 +11,11 @@
 
 .bar {
   stroke: 1px solid black;
-  fill: #8D82BD;
+  fill: #aec7e8;
 }
 
 .bar:hover {
-  fill: #C2B4B2;
+  fill: #1f77b4;
 }
 
 
@@ -36,12 +36,12 @@
     text-align: left;
     font-size:11px;
     width: 130px;
-    height: 200px;
+    height: 250px;
 }
 hr {
     padding:none;
     margin:0;
-    margin-top:20px;
+    margin-top:10px;
 }
 
 .xaxis {
@@ -157,13 +157,28 @@ hr {
 }
 #doubleChart1 {
     width: 48%;
-    height: 450px;
+    height: 350px;
     float:left;
+    margin-top: 5px;
+    clear:both;
 }
 #doubleChart2 {
     width: 48%;
-    height: 450px;
+    height: 350px;
     float: right;
+    margin-top: 5px;
+}
+#doubleChart1text {
+    width: 48%;
+    height: 20px;
+    float:left;
+    margin-top: 20px;
+}
+
+#doubleChart2text {
+    width: 48%;
+    float: right;
+    margin-top: 20px;
 }
 #buttons {
     margin-bottom: 5px;

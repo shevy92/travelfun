@@ -185,20 +185,23 @@
 					<div class="row">
 						<div class=" subtext to-animate">
                            <div class=".col-md-6" id="buttons">
-                                    <button id="5star">5 &#9734;</button>
-                                    <button id="4star">4 &#9734;</button>
-                                    <button id="3star">3 &#9734;</button>
-                                    <button id="2star">2 &#9734;</button>
-                                    <button id="1star">1 &#9734;</button>
-                                    <button id="hostel">Hostel</button>
-                                    <button id="airbnb">AirBnB</button>
-                                    <button id="Average">Average</button>
+                               <p>Select to view the top 10 most expensive cities versus the top 10 most affordable cities in a certain category.</p>
+                                <button id="Five">5 &#9734;</button>
+                                <button id="Four">4 &#9734;</button>
+                                <button id="Three">3 &#9734;</button>
+                                <button id="Two">2 &#9734;</button>
+                                <button id="One">1 &#9734;</button>
+                                <button id="Hostel">Hostel</button>
+                                <button id="Airbnb">AirBnB</button>
+                                <button id="Average">Average</button>
                             </div>
                             <div id="doubleContainer">
-                                
-                                <div id="doubleChart1" class="dchart">Most Expensive</div>
-                                <div id="doubleChart2" class="dchart">Most Affordable</div>
+                                <div id="doubleChart1" class="dchart"></div>
+                                <div id="doubleChart2" class="dchart"></div>
+                                <div id="doubleChart1text" class="dchart">Most Expensive</div>
+                                <div id="doubleChart2text" class="dchart">Most Affordable</div>
                             </div>
+                            
 						</div>
 					</div>
 				</div>
@@ -309,22 +312,66 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <script type="text/javascript">
-        d3.csv("data/accomodations.csv", function(error, data) {
+        
+        d3.csv("data/accomodations.csv", function makeGraphs (error, data) {
+          
           if (error) throw error;
-            /*
-            d3.select("#5star")
-            .on("click", function(d,i) {
-                d3.select(this).classed("selected", true);
-                d3.select("#5Star").classed("selected", false);
-                render1(data);
+            var Five = d3.select('#Five');
+            Five.on('click', function() {
+                  render1(data);
+                  render2(data);
             });
-            */
-            d3.selection.prototype.moveToFront = function() {
-              return this.each(function(){
-                this.parentNode.appendChild(this);
-              });
-            };
-
+            
+            var Four = d3.select('#Four');
+            Four.on('click', function() {
+                  render1Four(data);
+                  render2Four(data);
+            });
+            
+            var Three = d3.select('#Three');
+            Three.on('click', function() {
+                  render1Three(data);
+                  render2Three(data);
+            });
+            
+            var Two = d3.select('#Two');
+            Two.on('click', function() {
+                  render1Two(data);
+                  render2Two(data);
+            });
+            
+            var One = d3.select('#One');
+            One.on('click', function() {
+                  render1One(data);
+                  render2One(data);
+            });
+            
+            var Hostel = d3.select('#Hostel');
+            Hostel.on('click', function() {
+                  render1Hostel(data);
+                  render2Hostel(data);
+            });
+            
+            var Airbnb = d3.select('#Airbnb');
+            Airbnb.on('click', function() {
+                  render1Airbnb(data);
+                  render2Airbnb(data);
+            });
+            
+            var Hostel = d3.select('#Hostel');
+            Hostel.on('click', function() {
+                  render1Hostel(data);
+                  render2Hostel(data);
+            });
+            
+            var Average = d3.select('#Average');
+            Average.on('click', function() {
+                  render1Average(data);
+                  render2Average(data);
+            });
+            
+            
+            
             makeDoubleCharts(data);
             render1(data);
             render2(data);
