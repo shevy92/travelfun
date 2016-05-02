@@ -9,7 +9,7 @@
   shape-rendering: crispEdges;
 }
 
-.bar {
+rect.bar {
   stroke: 1px solid black;
   fill: #aec7e8;
 }
@@ -148,6 +148,10 @@ hr {
 }
 .subtext {
     font-size: 0.8em;
+}
+
+.subtext2 {
+    font-size: 0.6em;
 }
 
 #doubleContainer {

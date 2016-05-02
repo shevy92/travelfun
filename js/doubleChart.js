@@ -26,7 +26,6 @@ function makeDoubleCharts (data) {
                 var xAxis = d3.svg.axis()
                     .scale(xScale)
                     .orient("bottom")
-                
                     .ticks(10, "$");
 
                 var yAxis = d3.svg.axis()
@@ -105,6 +104,7 @@ function makeDoubleCharts (data) {
                     .append("text")
                       .attr("x", fullWidth/2)
                       .attr("y", 45)
+                      .style("font-size","15px")
                       .style("text-anchor", "end")
                       .text("5-Star Prices");
 
