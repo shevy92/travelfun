@@ -18,7 +18,8 @@
   fill: #1f77b4;
 }
 
-
+body {
+}
     
 #doubleChart text{
     color: lightsteelblue;
@@ -210,4 +211,6 @@ button:hover {
 }
 .text-center {
     padding: 0;
+}
+#fh5co-counters {
 }
