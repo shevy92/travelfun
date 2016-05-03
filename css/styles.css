@@ -152,6 +152,8 @@ hr {
 
 .subtext2 {
     font-size: 0.6em;
+    margin: 0 auto;
+    width: 90%;
 }
 
 #doubleContainer {
