@@ -1,11 +1,13 @@
 function multiples (data) {
     var color = d3.scale.ordinal()
-    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+    .range(["#aec7e8", "#1f77b4", "#c5b0d5", "#9467bd", "#a1d99b", "#31a354"]);
+    
+    //var color = d3.scale.category20()
                 
-    var fullwidth = 300,
-        fullheight = 250;
+    var fullwidth = 370,
+        fullheight = 300;
 
-    var margin = {top: 20, right: 20, bottom: 40, left: 50},
+    var margin = {top: 20, right: 20, bottom: 70, left: 50},
         width = fullwidth - margin.left - margin.right,
         height = fullheight - margin.top - margin.bottom;
     /*
@@ -94,7 +96,13 @@ function multiples (data) {
       localsvg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis)
+        .append("text")
+          .attr("x", fullwidth/2)
+          .attr("y", 45)
+          .style("text-anchor", "end")
+          .text(data.values[0].City);
+
 
       localsvg.append("g")
           // Hide y axis
@@ -106,17 +114,18 @@ function multiples (data) {
         .attr("dy", ".71em")
         .attr("text-anchor", "start")
         .attr("font-size", "1.1em")
-        .text(function(d) { return d.City});
+        .text(function(d) { return d.cost});
     
     localsvg.selectAll("rect.bar")
       .data(function(d) {return d.values[0].starcosts;})
       .enter()
       .append("rect")
       .attr("class", "bar")
+      .style("fill", function(d) { return color(d.class); })
       .attr("x", function(d) { 
-            console.log(d.class); 
+            //console.log(d.class); 
             return x(d.class); 
-        })
+        }) 
       .attr("width", x.rangeBand())
       .attr("y", function(d) { 
             return y(d.cost); 
