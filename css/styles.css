@@ -39,6 +39,17 @@ body {
     width: 130px;
     height: 250px;
 }
+
+.d3-tip-scatter {
+    background-color: lightgray;
+    color: dimgray;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: left;
+    font-size:11px;
+    width: 120px;
+    height: 115px;
+}
 hr {
     padding:none;
     margin:0;
@@ -125,8 +136,7 @@ hr {
   }
 }
 #map {
-    border:2px solid red;
-    height: 400px;
+    height: 470px;
 }
 .svg-container {
     display: inline-block;
@@ -219,4 +229,29 @@ button:hover {
     padding: 0;
 }
 #fh5co-counters {
+}
+
+.barlabel {
+    text-align: center;
+}
+#starTable {
+    width: 90%;
+    margin: 0 auto;
+}
+table {
+    border-collapse: collapse;
+    border: 2px black solid;
+    font: 12px sans-serif;
+}
+
+td {
+    border: 1px black solid;
+    padding: 5px;
+}
+.mapText {
+    font-size: 0.8em;
+    margin-bottom: 0 !important;
+}
+.gotop {
+    margin-top: 20px !important;
 }

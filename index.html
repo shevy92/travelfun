@@ -48,6 +48,7 @@
 	<style>
 	</style>
 
+    <script src="js/jquery.min.js"></script>
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -57,6 +58,10 @@
     <script src="js/doubleChart.js"></script>
     <script src="js/doubles.js"></script>
     <script src="js/smallmultiples.js"></script>
+    <script src="js/makeTable.js"></script>
+    
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <script src="js/d3.legend.js"></script>
     
     <script src="js/maps.js"></script>
     
@@ -226,17 +231,68 @@
 		</div>
 	</section>
 	
-	<!--
-	<section id="fh5co-about" data-section="about" style="background-image: url(images/giphy2.gif);">
+	
+	<section id="fh5co-about" data-section="about">
 		<div class="container">
 		
 			<div class="row">
 				<div class="col-md-12 section-heading text-center">
 				
-					<h2 class="to-animate">Chart 4</h2>
+					<h2 class="to-animate">
+What do those hotel star ratings really mean?</h2>
 					<div class="row">
-						<div class="col-md-8 col-md-offset-2 subtext to-animate">
-							<h3>Description</h3>
+						<div class=" subtext to-animate" id="starTable">
+							<table class="table table-bordered table-hover table-condensed">
+                               <col width="130">
+                                <thead><tr><th title="Field #1">Category</th>
+                                <th title="Field #2">Travelocity</th>
+                                <th title="Field #3">Expedia</th>
+                                <th title="Field #4">Orbitz</th>
+                                <th title="Field #5">Other</th>
+                                </tr></thead>
+                                <tbody><tr><td>One-star</td>
+                                <td>Meets budget basic needs</td>
+                                <td>Economy, no-frills accommodations</td>
+                                <td>Simple accommodations</td>
+                                <td> </td>
+                                </tr>
+                                <tr><td>Two-star</td>
+                                <td>Meets basic needs</td>
+                                <td>Value, clean, basic</td>
+                                <td>Value, comfortable, affordable</td>
+                                <td> </td>
+                                </tr>
+                                <tr><td>Three-star</td>
+                                <td>High service, additional amenities</td>
+                                <td>Quality, style, comfort, personalized service</td>
+                                <td>Mid-scale, convenience plus comfort</td>
+                                <td> </td>
+                                </tr>
+                                <tr><td>Four-star</td>
+                                <td>Superior property, variety of amenities</td>
+                                <td>Superior, upscale, high quality</td>
+                                <td>Deluxe/upscale, comfort plus quality</td>
+                                <td> </td>
+                                </tr>
+                                <tr><td>Five-star</td>
+                                <td>Luxury setting, flawless guest services</td>
+                                <td>Finest hotels, luxury, superlative service, highest comfort standards</td>
+                                <td>Luxury, first-class services, well equipped and state of the art facilities</td>
+                                <td> </td>
+                                </tr>
+                                <tr><td>Hostel</td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                    <td>An establishment that provides</br> inexpensive food and lodging for </br> a specific group of people, such as </br> students, workers, or travelers.</td>
+                                </tr>
+                                <tr><td>Airbnb</td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td >Airbnb is a peer-to-peer accommodation market</br>  place that connects hosts(vendors of </br> rooms/accommodations) and travelers via its website.</br>  Airbnb enables transactions between these two entities</br>  by charging a &#39;service fee&#39; without directly owning any rooms by itself.</br> Security and safety of the accommodation is not </br>always vetted by Airbnb and are completely left to travelers to choose based on published reviews.</br> Unlike traditional hotels, Airbnb scales not by scaling inventory </br>but by increasing the hosts and travelers and matching them with each other.</td>
+                                </tr>
+                                </tbody></table>
 						</div>
 					</div>
 					
@@ -245,7 +301,7 @@
 			
 		</div>
 	</section>
-	-->
+	
 	
 	<section id="fh5co-counters" data-section="about" style="background-image: url(images/giphy.gif); background-repeat: inital;" data-stellar-background-ratio="0.5">
 		<div class="fh5co-overlay"></div>
@@ -289,7 +345,13 @@
 	</section>
 
 	<section id="fh5co-contact" data-section="contact">
-		<div id="map" class="to-animate"></div>
+	    <div class="col-md-12 section-heading text-center to-animate mapText">
+            <h2>Across the Map</h2>
+            <p>Stumped on where your wanderlust should take you next? Budget a factor? <br>Hover over cities to see the average price of accomodations in that city,<br>as well as an overall price ranking as compared to the other destinations!</p>
+        </div>
+		<div id="map" class="to-animate map map-home" style="">
+		    
+		</div>
 	</section>
 	
 	
@@ -387,16 +449,20 @@
             
             multiples(data);
             
+            makemap(data);
             
             makeChart1(data);
             makeChart2(data);
-            makemap(data);
+            
+            
+            
         });
+        
     </script>
 
 	
 	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
+	
 	<!-- jQuery Easing -->
 	<script src="js/jquery.easing.1.3.js"></script>
 	<!-- Bootstrap -->

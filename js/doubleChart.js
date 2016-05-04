@@ -2,11 +2,14 @@ function makeDoubleCharts (data) {
                 
                 //data.sort(function(a,b) {return b.City-a.City;});
     
-                var fullWidth = 850;
-                var fullHeight = 500;
+                var fullWidth = 900;
+                var fullHeight = 550;
                 var margin = { top: 0, right: 70, bottom: 120, left: 75};
     
-                var color = d3.scale.category20c();
+                //var color = d3.scale.category20c();
+    
+     var color = d3.scale.ordinal()
+    .range(["#aec7e8", "#1f77b4", "#c5b0d5", "#9467bd", "#a1d99b", "#31a354"]);
 
                 /*
                 var color = d3.scale.ordinal()
@@ -34,10 +37,10 @@ function makeDoubleCharts (data) {
                     .ticks(10, "$");
                 
                  var tip = d3.tip()
-                    .attr('class', 'd3-tip')
+                    .attr('class', 'd3-tip-scatter')
                     .offset([0, 0])
                     .html(function(d) {
-                        return d.City+ ", " +d.Country+ "</br>Average: $" +d.Average;     
+                        return d.City+ ", " +d.Country+ "<hr></br>1 Star: $"+d.One+"</br>5 Star: $"+d.Five+"</br>Average: $" +d.Average;     
                   })
                  
                 var dropDown = d3.select("#filter").append("select")
@@ -54,15 +57,16 @@ function makeDoubleCharts (data) {
                 options.text(function (d) { return d.City; })
                        .attr("value", function (d) { return d.City; });
     
-                var options2 = dropDown2.selectAll("option")
-                           .data(data)
-                         .enter()
-                           .append("option");
-
-                //options2.text(function (d) { return d.Region; })
-                  //     .attr("value", function (d) { return d.Region; });
+                var optionsData = $.unique(data.map(function(d) {return d.Region;}));
+                    //console.log(optionsData);
     
-                options2 = d3.set(function (d) { return d.Region; }).values();
+                var options2 = dropDown2.selectAll("option")
+                           .data(optionsData)
+                         .enter()
+                          .append("option")
+                          .attr("value", function(d) {return d})
+                          .text(function(d) {return d;});
+
                                       
                 xScale.domain(
                     [0, d3.max(data, function(d) { return +d.Five; })+10]);

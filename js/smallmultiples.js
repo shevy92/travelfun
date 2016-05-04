@@ -4,8 +4,8 @@ function multiples (data) {
     
     //var color = d3.scale.category20()
                 
-    var fullwidth = 370,
-        fullheight = 300;
+    var fullwidth = 280,
+        fullheight = 220;
 
     var margin = {top: 20, right: 20, bottom: 70, left: 50},
         width = fullwidth - margin.left - margin.right,
@@ -23,11 +23,14 @@ function multiples (data) {
     
     var xAxis = d3.svg.axis()
         .scale(x)
-        .orient("bottom");
+        .orient("bottom")
+        .innerTickSize([0])
+        .tickValues(0);
 
     var yAxis = d3.svg.axis()
         .scale(y)
         .orient("left")
+        .innerTickSize([0])
         .ticks(4, "$");
     /*
     var countries = d3.nest()
@@ -70,7 +73,7 @@ function multiples (data) {
         .key(function(d) { return d.City;})
         .entries(data);
     
-    console.log(data);
+    //console.log(data);
     
     
     x.domain(["Hostel", "One-Star", "Two-Star", "Three-Star", "Four-Star", "Five-Star"]);
@@ -85,55 +88,58 @@ function multiples (data) {
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         .each(makeBar);
-    
+
 
     function makeBar(data) {
         
-        console.log("city data", data.values[0].starcosts);
+        //console.log("city data", data.values[0].starcosts);
         
-    var localsvg = d3.select(this);
-    
-      localsvg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-        .append("text")
-          .attr("x", fullwidth/2)
-          .attr("y", 45)
-          .style("text-anchor", "end")
-          .text(data.values[0].City);
+          var localsvg = d3.select(this);
+
+          localsvg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            .append("text")
+              .attr("x", fullwidth/2.5)
+              .attr("y", 20)
+              .style("text-anchor", "middle")
+              .attr("class", "barlabel")
+              .text(data.values[0].City);
+
+        
 
 
-      localsvg.append("g")
-          // Hide y axis
-          .attr("class", "y axis")
-          .call(yAxis)
-        .append("text")
-        .attr("x", width/2.5)
-        .attr("y", -20)
-        .attr("dy", ".71em")
-        .attr("text-anchor", "start")
-        .attr("font-size", "1.1em")
-        .text(function(d) { return d.cost});
-    
-    localsvg.selectAll("rect.bar")
-      .data(function(d) {return d.values[0].starcosts;})
-      .enter()
-      .append("rect")
-      .attr("class", "bar")
-      .style("fill", function(d) { return color(d.class); })
-      .attr("x", function(d) { 
-            //console.log(d.class); 
-            return x(d.class); 
-        }) 
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { 
-            return y(d.cost); 
-        })
-      .attr("height", function(d) { 
-        console.log(height - y(d.cost), d.cost);
-        return height - y(d.cost);
-        });
+          localsvg.append("g")
+              // Hide y axis
+              .attr("class", "y axis")
+              .call(yAxis)
+            .append("text")
+            .attr("x", width/2.5)
+            .attr("y", -20)
+            .attr("dy", ".71em")
+            .attr("text-anchor", "start")
+            .attr("font-size", "1.1em")
+            .text(function(d) { return d.cost});
+
+            localsvg.selectAll("rect.bar")
+              .data(function(d) {return d.values[0].starcosts;})
+              .enter()
+              .append("rect")
+              .attr("class", "bar")
+              .style("fill", function(d) { return color(d.class); })
+              .attr("x", function(d) { 
+                    //console.log(d.class); 
+                    return x(d.class); 
+                }) 
+              .attr("width", x.rangeBand())
+              .attr("y", function(d) { 
+                    return y(d.cost); 
+                })
+              .attr("height", function(d) { 
+                //console.log(height - y(d.cost), d.cost);
+                return height - y(d.cost);
+                });
     
     
     } // end makeBar

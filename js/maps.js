@@ -79,7 +79,7 @@ function makemap(data) {
                         }
                         */
                         // Bind a popup to each icon based on the same properties
-                        marker.bindPopup(marker.toGeoJSON().properties.City + ', ' + marker.toGeoJSON().properties.Country + '<br> Ranking: ' +
+                        marker.bindPopup(marker.toGeoJSON().properties.City + ', ' + marker.toGeoJSON().properties.Country + '<br> Price Ranking: ' +
                             marker.toGeoJSON().properties.Overall_Ranking + '/150 <br> Average per Night: $' + marker.toGeoJSON().properties.Average);
                         marker.on('mouseover', function (e) {
                             this.openPopup();
@@ -88,6 +88,14 @@ function makemap(data) {
                             this.closePopup();
                         });
                     });
+                
+            
+                    map.scrollWheelZoom.disable();
                 })
+            
+            
+            
+    
+    
                 .addTo(map);
-            }
+}
