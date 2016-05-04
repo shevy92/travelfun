@@ -59,8 +59,10 @@ function makeDoubleCharts (data) {
                          .enter()
                            .append("option");
 
-                options2.text(function (d) { return d.Region; })
-                       .attr("value", function (d) { return d.Region; });
+                //options2.text(function (d) { return d.Region; })
+                  //     .attr("value", function (d) { return d.Region; });
+    
+                options2 = d3.set(function (d) { return d.Region; }).values();
                                       
                 xScale.domain(
                     [0, d3.max(data, function(d) { return +d.Five; })+10]);
