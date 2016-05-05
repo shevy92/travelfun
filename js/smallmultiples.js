@@ -4,8 +4,8 @@ function multiples (data) {
     
     //var color = d3.scale.category20()
                 
-    var fullwidth = 280,
-        fullheight = 220;
+    var fullwidth = 380,
+        fullheight = 240;
 
     var margin = {top: 20, right: 20, bottom: 70, left: 50},
         width = fullwidth - margin.left - margin.right,
@@ -24,8 +24,8 @@ function multiples (data) {
     var xAxis = d3.svg.axis()
         .scale(x)
         .orient("bottom")
-        .innerTickSize([0])
-        .tickValues(0);
+        .innerTickSize([0]);
+        //.tickValues(0);
 
     var yAxis = d3.svg.axis()
         .scale(y)
@@ -90,6 +90,7 @@ function multiples (data) {
         .each(makeBar);
 
 
+    
     function makeBar(data) {
         
         //console.log("city data", data.values[0].starcosts);
@@ -102,12 +103,10 @@ function multiples (data) {
             .call(xAxis)
             .append("text")
               .attr("x", fullwidth/2.5)
-              .attr("y", 20)
+              .attr("y", 30)
               .style("text-anchor", "middle")
               .attr("class", "barlabel")
               .text(data.values[0].City);
-
-        
 
 
           localsvg.append("g")
@@ -128,8 +127,7 @@ function multiples (data) {
               .append("rect")
               .attr("class", "bar")
               .style("fill", function(d) { return color(d.class); })
-              .attr("x", function(d) { 
-                    //console.log(d.class); 
+              .attr("x", function(d) {  
                     return x(d.class); 
                 }) 
               .attr("width", x.rangeBand())
@@ -140,8 +138,20 @@ function multiples (data) {
                 //console.log(height - y(d.cost), d.cost);
                 return height - y(d.cost);
                 });
+        
+            localsvg.selectAll("text.bar")
+                .data(function(d) {return d.values[0].starcosts;})
+                .enter()
+                .append("text")
+                .attr("class", "bar")
+                .attr("text-anchor", "middle")
+                .attr("x", function(d) {  
+                        return x(d.class)+20; 
+                    })
+                .attr("y", function(d) { return y(d.cost) - 3; })
+                .html(function(d) { return  "$"+ d.cost; });
     
+        
     
     } // end makeBar
-    
 }

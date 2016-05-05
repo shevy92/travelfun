@@ -89,12 +89,12 @@
 		        
 		        <div id="navbar" class="navbar-collapse collapse">
 		          <ul class="nav navbar-nav navbar-right">
-		            <li class="active"><a href="#" data-nav-section="home"><span>Home</span></a></li>
 		            <li><a href="#" data-nav-section="work"><span>Price Gap</span></a></li>
 		            <li><a href="#" data-nav-section="testimonials"><span>Expensive or Afforadable?</span></a></li>
 		            <li><a href="#" data-nav-section="services"><span>The States</span></a></li>
 		            <li><a href="#" data-nav-section="about"><span>Fun Facts</span></a></li>
 		            <li><a href="#" data-nav-section="contact"><span>Across the Map</span></a></li>
+		            <li><a href="#" data-nav-section="contact2"><span>Top Choices</span></a></li>
 		          </ul>
 		        </div>
 		        
@@ -158,6 +158,14 @@
 				<a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo btn-video"><i class="icon-play2"></i></a>
 			</div>
 			-->
+			<div class=".col-md-6" style="margin: 0 auto; margin-top:50px; width:85%;">
+			    <h3 id="introText" style="text-align:center;">
+			        Get ready to explore accomodation prices for 150 popular tourist destinations across the globe! </br>
+                Take a look at 5 star, 4 star, 3 star, 2 star, and 1 star hotels, hostels, AirBnb, and explore trends and overall average prices
+                before you make a decision for your next vacation. <br><br>
+                Not sure what the differences are, or if the price jump will even be worth it? We got you covered. 
+			    </h3>
+			</div>
 		</div>
 	</section>
 
@@ -170,6 +178,10 @@
 						<div class="col-md-8 subtext to-animate">
 							<div id="doubleChart" class="chart"></div>
 						</div>
+						<p class="col-md-4" style="font-size:0.9em; float:right; text-align: right;">
+                            Take a look at price comparisons across the world. You can see how each city's 5 Star hotel prices compare to the 1 Star hotel prices, as well as how cities rank against each other. </br>Notice Punta Cana has the most expensive 5 Star hotels in the world, by a longshot, but rather cheap 1 Star hotels? Perhaps because they are simply known for their luxury hotels.
+						</p>
+						<p class="col-md-3" style="font-size:0.8em; float:right; text-align: right;">Highlight a particular region by selecting from the drop down below. Why not see if your favorite city is there? Highlight it by selecting from the second dropdown.</p>
 						<div id="filter2" class="col-md-3 subtext to-animate">
 							View a Region:
 						</div>
@@ -221,8 +233,9 @@
 			<div class="row">
 				<div class="col-md-12 section-heading text-left">
 					<h2 class=" left-border to-animate">What's going on in the States?</h2>
+					<p style="font-size: 0.8em;">Take a look at what's going on in the United States.<br> Looks like New York City won "Most Expensive" in every class but one. Miami surpassed them in terms of luxury 5 Star resorts.</p>
 					<div class="row">
-						<div class="col-md-12  subtext subtext2 to-animate">
+						<div class="subtext subtext2 to-animate" style="width:100%;">
 							<div id="vis"></div>
 						</div>
 					</div>
@@ -295,7 +308,16 @@ What do those hotel star ratings really mean?</h2>
                                 </tbody></table>
 						</div>
 					</div>
-					
+					<br>
+					<h3 style="text-align:left;">The big picture:<br>
+                       <ul>
+                        <li>1 Star: Basic, simple, possible clean. Don't do it if you don't have to. A hostel or Airbnb would be much better.</li>
+                        <li>2 Star: Basic, but comfortable. Definitely better than a 1 Star. </li>
+                        <li>3 Star: Mid-scale, amenities, better quality. Your best bet for a nice, yet affordable stay. </li>
+                        <li>4 Star: Upscale, superior, high quality. Many cities offer 4 star rooms at a decent price, compared to the dramatic spike for a 5 star room. If you want luxury, a 4 star room is good enough!</li>
+                        <li>5 Star: Luxury, superlative, highest quality, first class. If you want the best of the best, then go for it! If you want "the best" but can't afford 5 star prices, a 4 star room is basically just as good. </li>
+                        </ul>
+                    </h3>
 				</div>
 			</div>
 			
@@ -349,20 +371,54 @@ What do those hotel star ratings really mean?</h2>
             <h2>Across the Map</h2>
             <p>Stumped on where your wanderlust should take you next? Budget a factor? <br>Hover over cities to see the average price of accomodations in that city,<br>as well as an overall price ranking as compared to the other destinations!</p>
         </div>
+        <div class="col-md-3" id="legend" style="float:right; margin-top:-80px; position: relative;">
+            <div class="box" id="one"></div> 
+            <p class="">Average Price higher than $99 a Night</p>
+            <div class="box" id="two"></div> 
+            <p class="">Average Price between $50 and $99 a Night</p>
+            <div class="box" id="three"></div> 
+            <p class="">Average Price less than $50 a Night</p>
+        </div>
 		<div id="map" class="to-animate map map-home" style="">
-		    
 		</div>
 	</section>
 	
+	<section data-section="contact2" style="height:700px; margin-top: 200px;">
+	    <div class="col-md-12 text-center">
+        <h2>So What's the Verdict?</h2>
+	        <p>
+	            If you have money to blow, Punta Cana is definitely the place to go!<br><br>
+	            
+	            <strong>Europe:</strong><br> The nicest cities would be St. Moritz, Switzerland; Reims, France, and St. Tropez, France. <br>The most afforable options are Tirana, Albania; Sofia, Bulgaria; and Bucharest, Romania. <br>(But hey, it's still a European vacation right?)
+	            <br>
+	            <strong>Asia:</strong><br>
+	            The most expensive stops would be Hong Kong and Macao, China. <br>
+	            The most affordable would be Shanghai, China and Kuala Lumpur, Malaysia <br>(Kuala Lumpur is the sixth most visited city in the world, with 8.9 million tourists per year.)<br>
+	            <strong>The Middle East:</strong><br>
+	            The most expensive hotels can be found in Jerusalem, Israel and Muscat, Oman.<br>
+	            The most affordable option is Antlaya, Turkey.<br>
+	            (The city was founded as "Attaleia" (Greek: Αττάλεια), named after its founder Attalos II, king of Pergamon)<br>
+	            <strong>Americas:</strong><br>
+	            New York and Miami, of course. But if you're willing to speak a little Spanish- <br>Rio de Janeiro , Brazil and Cancun, Mexico have much better luxury prices for an exotic vacation. <br>
+	            Mexico City, Mexico and Bogota, Colombia are the most afforadable, but we've heard about things that go on there...
+	            
+	        </p>
+	    </div>
+	</section>
 	
-	<footer id="footer" role="contentinfo">
+	
+	<footer id="footer" role="contentinfo" >
 		<a href="#" class="gotop js-gotop"><i class="icon-arrow-up2"></i></a>
 		<div class="container">
 			<div class="">
 				<div class="col-md-12 text-center">
-                    <p></br>Created by: Sevika Singh</br>
+                    
+                    </br>Sources: </br><a href="http://knoema.com/zfnkitc/accommodation-price-index-2016">Knoema Word Data Finder</a>
+                    </br><a href="http://www.smartertravel.com/travel-advice/What-those-hotel-star.html?id=17054">Smarter Travel</a>
+                    </p>
+                    
+                    <p>Created by: Sevika Singh</br>
                     <a href="http://sevika.co">Contact Me</a>
-                    </br>Source: <a href="http://knoema.com/zfnkitc/accommodation-price-index-2016">Knoema Word Data Finder</a></p>
 					
 				</div>
 			</div>

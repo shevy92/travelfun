@@ -98,8 +98,12 @@ hr {
     vertical-align: middle;
 }
 #legend {
-    width:30%;
+    width:25%;
     margin-left: 8%;
+}
+#legend p {
+    margin-bottom: 0;
+    font-size: 0.6em;
 }
 #legend2 {
     float:left;
@@ -254,4 +258,10 @@ td {
 }
 .gotop {
     margin-top: 20px !important;
+}
+#filter {
+    margin-top: 10px;
+}
+#filter2 {
+    margin-top: 0;
 }

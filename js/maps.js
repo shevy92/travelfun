@@ -36,19 +36,19 @@ function makemap(data) {
                         if (marker.toGeoJSON().properties.Overall_Ranking < 100 && marker.toGeoJSON().properties.Overall_Ranking > 50 && marker.toGeoJSON().properties.Average >99) {  
                             marker.setIcon(L.mapbox.marker.icon({
                                 'marker-color': '#473433',
-                                'marker-size': 'medium'
+                                'marker-size': 'small'
                             }));
                         }
                             if (marker.toGeoJSON().properties.Overall_Ranking < 100 && marker.toGeoJSON().properties.Overall_Ranking > 50 && marker.toGeoJSON().properties.Average <100 && marker.toGeoJSON().properties.Average >50) {  
                                 marker.setIcon(L.mapbox.marker.icon({
                                     'marker-color': '#C2B4B2',
-                                    'marker-size': 'medium'
+                                    'marker-size': 'small'
                                 }));
                             }
                                 if (marker.toGeoJSON().properties.Overall_Ranking < 100 && marker.toGeoJSON().properties.Overall_Ranking > 50 && marker.toGeoJSON().properties.Average <51) {  
                                     marker.setIcon(L.mapbox.marker.icon({
                                         'marker-color': '#8D82BD',
-                                        'marker-size': 'medium'
+                                        'marker-size': 'small'
                                     }));
                                 }
 
@@ -56,19 +56,19 @@ function makemap(data) {
                         if (marker.toGeoJSON().properties.Overall_Ranking < 51 && marker.toGeoJSON().properties.Average >99) {  
                             marker.setIcon(L.mapbox.marker.icon({
                                 'marker-color': '#473433',
-                                'marker-size': 'large'
+                                'marker-size': 'small'
                             }));
                         }
                             if (marker.toGeoJSON().properties.Overall_Ranking < 51 && marker.toGeoJSON().properties.Average <100 && marker.toGeoJSON().properties.Average >50) {  
                                 marker.setIcon(L.mapbox.marker.icon({
                                     'marker-color': '#8D82BD',
-                                    'marker-size': 'large'
+                                    'marker-size': 'small'
                                 }));
                             }
                                 if (marker.toGeoJSON().properties.Overall_Ranking < 51 && marker.toGeoJSON().properties.Average <51) {  
                                     marker.setIcon(L.mapbox.marker.icon({
                                         'marker-color': '#C2B4B2',
-                                        'marker-size': 'large'
+                                        'marker-size': 'small'
                                     }));
                                 }
 
